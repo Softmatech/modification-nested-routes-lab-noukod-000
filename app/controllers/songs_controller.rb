@@ -25,6 +25,9 @@ class SongsController < ApplicationController
   end
 
   def new
+    if params[:artist_id]
+
+    end
     @song = Song.new
   end
 
@@ -67,4 +70,3 @@ class SongsController < ApplicationController
     params.require(:song).permit(:title, :artist_name)
   end
 end
-

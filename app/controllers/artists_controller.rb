@@ -22,10 +22,17 @@ class ArtistsController < ApplicationController
   end
 
   def edit
+    if params[:id] && !Artist.exists?(params[:id])
+      redirect_to artist_path, alert: "Artist not found."
+    else
     @artist = Artist.find(params[:id])
   end
+end
 
   def update
+    if params[:id] && !Artist.exists?(params[:id])
+      redirect_to artist_path, alert: "Artist not found."
+    else
     @artist = Artist.find(params[:id])
 
     @artist.update(artist_params)
@@ -36,6 +43,7 @@ class ArtistsController < ApplicationController
       render :edit
     end
   end
+end
 
   def destroy
     @artist = Artist.find(params[:id])
